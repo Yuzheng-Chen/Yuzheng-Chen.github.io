@@ -10,6 +10,8 @@
   -webkit-animation-delay: 0.15s;
           animation-delay: 0.15s;
   z-index: 20;
+  background: seashell;
+  box-shadow: 0px 2px 10px lightgray;
 
   &__inner-wrap {
     @include container;
