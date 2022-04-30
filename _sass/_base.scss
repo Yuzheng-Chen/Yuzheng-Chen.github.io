@@ -7,6 +7,10 @@ html {
   min-height: 100%;
 }
 
+::selection {
+  background-color: #417D7A;
+}
+
 body {
   margin: 0;
   padding: 0;
