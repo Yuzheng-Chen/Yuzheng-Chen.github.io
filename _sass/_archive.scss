@@ -28,9 +28,10 @@
 }
 
 .archive__left-image{
-  width: 100px; /* Make it smaller */
-  float: left; /* Put image left-side */
-  margin-right: 10px; /* Add some space between img and text */
+  width: 300px;
+  float: right;
+  margin-right: 10px;
+  box-shadow: 2px 3px 1px gray;
 }
 
 .archive__subtitle {
