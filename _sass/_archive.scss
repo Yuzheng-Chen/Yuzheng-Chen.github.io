@@ -27,6 +27,12 @@
   }
 }
 
+.archive__left-image{
+  width: 100px; /* Make it smaller */
+  float: left; /* Put image left-side */
+  margin-right: 10px; /* Add some space between img and text */
+}
+
 .archive__subtitle {
   margin: 1.414em 0 0;
   padding-bottom: 0.5em;
