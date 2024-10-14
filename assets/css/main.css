@@ -3697,7 +3697,7 @@ body.is-menu-visible #menu {
 
 .abstract {
   position: relative;
-  max-width: 55vw; /* Adjust according to your layout */
+
   margin-bottom: 1em;
 }
 
@@ -3706,7 +3706,6 @@ body.is-menu-visible #menu {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: max-height 0.6s ease; /* Smooth transition */
-  white-space: nowrap;
 }
 
 .abstract-text.expanded {
@@ -3743,4 +3742,20 @@ a.image.left.teaser img {
 .custom-bold {
   font-weight: 600; /* You can use any value between 100 and 900 */
   color: #2ebaae;
+}
+
+.remark {
+  font-size: 0.7em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  max-width: 100%;
+  overflow: hidden;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: -1em;
+  margin-bottom: 1em;
+  margin-right: 3em;
 }
