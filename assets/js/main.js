@@ -93,18 +93,3 @@
 			});
 
 })(jQuery);
-
-
-document.querySelectorAll('.expand-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const abstractText = this.previousElementSibling;
-        
-        if (abstractText.classList.contains('expanded')) {
-            abstractText.classList.remove('expanded');
-            this.textContent = '⯆ Read More';
-        } else {
-            abstractText.classList.add('expanded');
-            this.textContent = '⯅ Read Less';
-        }
-    });
-});
