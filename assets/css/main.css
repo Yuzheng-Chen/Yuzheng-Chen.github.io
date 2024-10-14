@@ -300,7 +300,8 @@ i {
 }
 
 p {
-  margin: 0 0 2em 0;
+  margin: 0 0 0.5em 0;
+  font-size: 11pt;
 }
 
 h1,
@@ -311,7 +312,7 @@ h5,
 h6 {
   color: #3c3b3b;
   font-family: "Roboto", Helvetica, sans-serif;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0em;
   line-height: 1.2;
   margin: 0 0 1em 0;
@@ -3135,7 +3136,7 @@ article.special {
 
 header p {
   font-family: "Roboto", Helvetica, sans-serif;
-  font-size: 1em;
+  font-size: 0.85em;
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 2.5;
@@ -3505,32 +3506,22 @@ body.single #wrapper {
 /* Intro */
 
 #intro .logo {
-  border-bottom: 0;
   display: inline-block;
   margin: 0 0 1em 0;
-  overflow: hidden;
   position: relative;
-  width: 4em;
-}
-
-#intro .logo:before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,0 100,0 100,25 50,0 0,25' style='fill:%23f4f4f4' /%3E%3Cpolygon points='0,100 100,100 100,75 50,100 0,75' style='fill:%23f4f4f4' /%3E%3C/svg%3E");
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  content: "";
-  display: block;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
+  width: 12em;
+  height: 12em;
+  overflow: hidden;
+  border-radius: 50%; /* Make it circular */
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a subtle effect */
+  border: 4px solid #fff; /* Add white border */
 }
 
 #intro .logo img {
   display: block;
-  margin-left: -0.25em;
-  width: 4.5em;
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* Circular image */
 }
 
 #intro header h2 {
@@ -3698,16 +3689,58 @@ body.is-menu-visible #menu {
 }
 
 .section-title {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 300;
   margin-bottom: -0.5em;
   text-align: left; /* 左对齐标题 */
 }
 
-.improvisation-title {
-  font-size: 2em;
-  font-weight: 300;
-  margin-top: -0.6em;
-  margin-bottom: 0.8em;
-  text-align: left; /* 左对齐标题 */
+.abstract {
+  position: relative;
+  max-width: 55vw; /* Adjust according to your layout */
+  margin-bottom: 1em;
+}
+
+.abstract-text {
+  max-height: 3.6em; /* Limiting height, adjust for how much you want to show by default */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: max-height 0.6s ease; /* Smooth transition */
+  white-space: nowrap;
+}
+
+.abstract-text.expanded {
+  max-height: 30em; /* Remove height restriction when expanded */
+  white-space: normal; /* Make text wrap when expanded */
+}
+
+.expand-btn {
+  position: relative;
+  display: block;
+  border-radius: 4px;
+  font-size: 0.6em;
+  float: right;
+}
+
+.content-container {
+  margin-bottom: 4em;
+}
+
+.content-container::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #d8d7d7; /* Line color */
+  margin: 1em 0; /* Adjust spacing around the line */
+}
+
+a.image.left.teaser img {
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-bold {
+  font-weight: 600; /* You can use any value between 100 and 900 */
+  color: #2ebaae;
 }
