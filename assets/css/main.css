@@ -3139,7 +3139,7 @@ header p {
   font-size: 0.85em;
   font-weight: 400;
   letter-spacing: 0em;
-  line-height: 2.5;
+  line-height: 1.5;
   margin-top: -1em;
   /*text-transform: uppercase;*/
 }
@@ -3758,4 +3758,12 @@ a.image.left.teaser img {
   margin-top: -1em;
   margin-bottom: 1em;
   margin-right: 3em;
+}
+
+.header-logo {
+  display: block;
+  margin-left: 0.5em;
+  margin-right: -1em;
+  margin-top: 0.3em;
+  height: 80%;
 }
