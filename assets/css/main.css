@@ -281,11 +281,11 @@ a:before {
 
 a:hover {
   border-bottom-color: transparent;
-  color: #2ebaae !important;
+  color: #975A79 !important;
 }
 
 a:hover:before {
-  color: #2ebaae !important;
+  color: #975A79 !important;
 }
 
 strong,
@@ -1996,8 +1996,8 @@ input[type="reset"]:hover,
 input[type="button"]:hover,
 button:hover,
 .button:hover {
-  box-shadow: inset 0 0 0 1px #2ebaae;
-  color: #2ebaae !important;
+  box-shadow: inset 0 0 0 1px #975A79;
+  color: #975A79 !important;
 }
 
 input[type="submit"]:hover:active,
@@ -2178,8 +2178,8 @@ input[type="email"]:focus,
 input[type="tel"]:focus,
 select:focus,
 textarea:focus {
-  border-color: #2ebaae;
-  box-shadow: inset 0 0 0 1px #2ebaae;
+  border-color: #975A79;
+  box-shadow: inset 0 0 0 1px #975A79;
 }
 
 .select-wrapper {
@@ -2320,8 +2320,8 @@ input[type="radio"]:checked + label:before {
 
 input[type="checkbox"]:focus + label:before,
 input[type="radio"]:focus + label:before {
-  border-color: #2ebaae;
-  box-shadow: 0 0 0 1px #2ebaae;
+  border-color: #975A79;
+  box-shadow: 0 0 0 1px #975A79;
 }
 
 input[type="radio"] + label:before {
@@ -2403,7 +2403,14 @@ input[type="radio"] + label:before {
 
 .image.left,
 .image.right {
-  max-width: 30%;
+  max-width: 18em;
+}
+
+@media screen and (max-width: 736px) {
+  .image.left,
+.image.right {
+  max-width: 100%;
+}
 }
 
 .image.left img,
@@ -2480,6 +2487,7 @@ ul {
 
 ul li {
   padding-left: 0.5em;
+  font-size: 1em;
 }
 
 ul.alt {
@@ -3262,7 +3270,7 @@ body {
 }
 
 #header h1 a {
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 #header .links {
@@ -3294,10 +3302,10 @@ body {
 #header .links ul li a {
   border-bottom: 0;
   font-family: "Roboto", Helvetica, sans-serif;
-  font-size: 0.7em;
+  font-size: 1em;
   font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
+  /*letter-spacing: 0.25em;*/
+  /*text-transform: uppercase;*/
 }
 
 #header .main {
@@ -3551,7 +3559,11 @@ body.single #wrapper {
   }
 
   #intro header p {
-    font-size: 0.7em;
+    font-size: 1em;
+  }
+
+  #intro .actions{
+    justify-content: center;
   }
 }
 
@@ -3658,21 +3670,22 @@ body.single #footer {
   -webkit-transition: color 0.2s ease;
   -ms-transition: color 0.2s ease;
   transition: color 0.2s ease;
-  font-size: 0.7em;
+  font-size: 1.1em;
 }
 
 #menu .links > li a p {
+  margin-top: -1em;
   font-family: "Roboto", Helvetica, sans-serif;
-  font-size: 0.6em;
+  font-size: 0.8em;
   font-weight: 400;
-  letter-spacing: 0.25em;
+  /*letter-spacing: 0.25em;*/
   margin-bottom: 0;
   text-decoration: none;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 #menu .links > li a:hover h3 {
-  color: #2ebaae;
+  color: #975A79;
 }
 
 #menu .links > li:first-child {
@@ -3736,19 +3749,22 @@ body.is-menu-visible #menu {
   content: "";
   display: block;
   width: 100%;
-  height: 1px;
-  background-color: #d8d7d7; /* Line color */
+  height: 2px;
+  background-color: rgba(188, 170, 153, 0.5); /* Line color */
   margin: 1em 0; /* Adjust spacing around the line */
 }
 
 a.image.left.teaser img {
-  border: 2px solid #fff;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  width: 100%;             /* 确保图片适应容器宽度 */
+  height: auto;            /* 保持高度自适应 */
+  aspect-ratio: 16 / 9;    /* 强行16:9 */
+  object-fit: cover;       /* 如果图片大小不匹配，确保它覆盖整个区域 */
 }
 
 .custom-bold {
   font-weight: 600; /* You can use any value between 100 and 900 */
-  color: #2ebaae;
+  color: #975A79;
 }
 
 .remark {
@@ -3762,9 +3778,9 @@ a.image.left.teaser img {
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  margin-top: -1em;
-  margin-bottom: 1em;
-  margin-right: 3em;
+  margin-top: -1.5em;
+  margin-bottom: 1.5em;
+  margin-right: 1em;
 }
 
 .header-logo {
@@ -3773,4 +3789,15 @@ a.image.left.teaser img {
   margin-right: -1em;
   margin-top: 0.3em;
   height: 80%;
+}
+
+.biography {
+  border: #975A79;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+::selection {
+  background-color: #BCAA99; /* This changes the background of the selected text */
+  color:  #504050; /* This changes the text color */
 }
