@@ -5,7 +5,7 @@ function generatePublicationHTML(publication) {
   
     return `
       <div class="content-container">
-        <a href="#" class="image left teaser"><img src="${publication.imageSrc}" alt="Article Image" /></a>
+        <a class="image left teaser"><img src="${publication.imageSrc}" alt="Article Image" /></a>
         <div class="content-right">
           <header>
             <div class="title">

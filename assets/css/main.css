@@ -1974,15 +1974,15 @@ button,
   transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   background-color: transparent;
   border: 0;
-  box-shadow: inset 0 0 0 1px rgba(160, 160, 160, 0.3);
-  color: #3c3b3b !important;
+  box-shadow: inset 0 0 0 1px rgba(80, 64, 80, 0.3);
+  color: #504050 !important;
   cursor: pointer;
   display: inline-block;
   font-family: "Roboto", Helvetica, sans-serif;
-  font-size: 0.6em;
-  font-weight: 800;
+  font-size: 0.7em;
+  font-weight: 400;
   height: 4.8125em;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.15em;
   line-height: 4.8125em;
   padding: 0 2.5em;
   text-align: center;
@@ -3736,9 +3736,9 @@ body.is-menu-visible #menu {
 .expand-btn {
   position: relative;
   display: block;
-  border-radius: 4px;
   font-size: 0.6em;
   float: right;
+  box-shadow: none;
 }
 
 .content-container {
@@ -3755,7 +3755,6 @@ body.is-menu-visible #menu {
 }
 
 a.image.left.teaser img {
-  border-radius: 4px;
   width: 100%;             /* 确保图片适应容器宽度 */
   height: auto;            /* 保持高度自适应 */
   aspect-ratio: 16 / 9;    /* 强行16:9 */
