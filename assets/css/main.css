@@ -3527,10 +3527,17 @@ body.single #wrapper {
 #intro header h2 {
   font-size: 2em;
   font-weight: 200;
+  margin: 0 0 0 0;
 }
 
+#intro header h3 {
+  font-size: 1.3em;
+  font-weight: 200;
+}
+
+
 #intro header p {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 @media screen and (max-width: 1280px) {
