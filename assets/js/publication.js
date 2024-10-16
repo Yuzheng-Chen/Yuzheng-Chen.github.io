@@ -16,7 +16,7 @@ function generatePublicationHTML(publication) {
           </header>
           <div class="abstract">
             <p class="abstract-text">${publication.abstract}</p>
-            <button class="expand-btn">⯆ Read More</button>
+            <button class="expand-btn">Read More ⋁</button>
           </div>						
         </div>
       </div>`;
@@ -32,10 +32,10 @@ function generatePublicationHTML(publication) {
         // Toggle the expanded class to show or hide the abstract
         if (abstractText.classList.contains('expanded')) {
           abstractText.classList.remove('expanded');
-          this.textContent = '⯆ Read More'; // Change button text back
+          this.textContent = 'Read More ⋁'; // Change button text back
         } else {
           abstractText.classList.add('expanded');
-          this.textContent = '⯅ Read Less'; // Change button text to 'Read Less'
+          this.textContent = 'Read Less ⋀'; // Change button text to 'Read Less'
         }
       });
     });

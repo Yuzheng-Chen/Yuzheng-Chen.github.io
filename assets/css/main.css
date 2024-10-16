@@ -3736,7 +3736,7 @@ body.is-menu-visible #menu {
 .expand-btn {
   position: relative;
   display: block;
-  font-size: 0.6em;
+  font-size: 0.65em;
   float: right;
   box-shadow: none;
 }
