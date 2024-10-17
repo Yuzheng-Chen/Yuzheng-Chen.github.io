@@ -281,11 +281,11 @@ a:before {
 
 a:hover {
   border-bottom-color: transparent;
-  color: #975A79 !important;
+  color: #975a79 !important;
 }
 
 a:hover:before {
-  color: #975A79 !important;
+  color: #975a79 !important;
 }
 
 strong,
@@ -1996,8 +1996,8 @@ input[type="reset"]:hover,
 input[type="button"]:hover,
 button:hover,
 .button:hover {
-  box-shadow: inset 0 0 0 1px #975A79;
-  color: #975A79 !important;
+  box-shadow: inset 0 0 0 1px #975a79;
+  color: #975a79 !important;
 }
 
 input[type="submit"]:hover:active,
@@ -2178,8 +2178,8 @@ input[type="email"]:focus,
 input[type="tel"]:focus,
 select:focus,
 textarea:focus {
-  border-color: #975A79;
-  box-shadow: inset 0 0 0 1px #975A79;
+  border-color: #975a79;
+  box-shadow: inset 0 0 0 1px #975a79;
 }
 
 .select-wrapper {
@@ -2320,8 +2320,8 @@ input[type="radio"]:checked + label:before {
 
 input[type="checkbox"]:focus + label:before,
 input[type="radio"]:focus + label:before {
-  border-color: #975A79;
-  box-shadow: 0 0 0 1px #975A79;
+  border-color: #975a79;
+  box-shadow: 0 0 0 1px #975a79;
 }
 
 input[type="radio"] + label:before {
@@ -2408,9 +2408,9 @@ input[type="radio"] + label:before {
 
 @media screen and (max-width: 736px) {
   .image.left,
-.image.right {
-  max-width: 100%;
-}
+  .image.right {
+    max-width: 100%;
+  }
 }
 
 .image.left img,
@@ -2783,17 +2783,22 @@ ul.posts article header > :last-child {
 }
 
 .mini-post header h3 {
-  font-size: 0.7em;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.mini-post header p {
+  font-size: 0.8em;
+  color: #3c3b3b;
 }
 
 .mini-post header .published {
   display: block;
   font-family: "Roboto", Helvetica, sans-serif;
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-weight: 400;
-  letter-spacing: 0.25em;
-  margin: -0.625em 0 1.7em 0;
-  text-transform: uppercase;
+  margin: 0em 0 1.7em 0;
+  /*text-transform: uppercase;*/
 }
 
 .mini-post header .author {
@@ -3543,7 +3548,6 @@ body.single #wrapper {
   font-weight: 200;
 }
 
-
 #intro header p {
   font-size: 1em;
 }
@@ -3562,7 +3566,7 @@ body.single #wrapper {
     font-size: 1em;
   }
 
-  #intro .actions{
+  #intro .actions {
     justify-content: center;
   }
 }
@@ -3685,7 +3689,7 @@ body.single #footer {
 }
 
 #menu .links > li a:hover h3 {
-  color: #975A79;
+  color: #975a79;
 }
 
 #menu .links > li:first-child {
@@ -3755,15 +3759,15 @@ body.is-menu-visible #menu {
 }
 
 a.image.left.teaser img {
-  width: 100%;             /* 确保图片适应容器宽度 */
-  height: auto;            /* 保持高度自适应 */
-  aspect-ratio: 16 / 9;    /* 强行16:9 */
-  object-fit: cover;       /* 如果图片大小不匹配，确保它覆盖整个区域 */
+  width: 100%; /* 确保图片适应容器宽度 */
+  height: auto; /* 保持高度自适应 */
+  aspect-ratio: 16 / 9; /* 强行16:9 */
+  object-fit: cover; /* 如果图片大小不匹配，确保它覆盖整个区域 */
 }
 
 .custom-bold {
   font-weight: 600; /* You can use any value between 100 and 900 */
-  color: #975A79;
+  color: #975a79;
 }
 
 .remark {
@@ -3791,12 +3795,12 @@ a.image.left.teaser img {
 }
 
 .biography {
-  border: #975A79;
+  border: #975a79;
   max-width: 40em;
   margin: 0 auto;
 }
 
 ::selection {
-  background-color: #BCAA99; /* This changes the background of the selected text */
-  color:  #504050; /* This changes the text color */
+  background-color: #bcaa99; /* This changes the background of the selected text */
+  color: #504050; /* This changes the text color */
 }
