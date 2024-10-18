@@ -3586,7 +3586,7 @@ body.single #wrapper {
   }
 
   #intro header h2 {
-    font-size: 1.25em;
+    font-size: 2em;
   }
 
   #intro header > :last-child {
@@ -3803,4 +3803,8 @@ a.image.left.teaser img {
 ::selection {
   background-color: #bcaa99; /* This changes the background of the selected text */
   color: #504050; /* This changes the text color */
+}
+
+.publication-links {
+  font-size: 1.3em;
 }
