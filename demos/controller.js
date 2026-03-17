@@ -56,3 +56,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateDemoDisabledState();
 });
+
+function updateSketchScale() {
+  const baseWidth = 672; // 你的设计宽度
+  const container = document.querySelector(".sketch-outer");
+  const scaleEl = document.querySelector(".sketch-scale");
+
+  if (!container || !scaleEl) return;
+
+  const availableWidth = container.clientWidth;
+
+  let scale = 1;
+
+  if (availableWidth < baseWidth) {
+    scale = availableWidth / baseWidth;
+  }
+
+  scaleEl.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", updateSketchScale);
+window.addEventListener("load", updateSketchScale);
