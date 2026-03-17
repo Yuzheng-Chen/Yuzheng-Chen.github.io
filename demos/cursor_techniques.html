@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>Cursor Techniques Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.js"></script>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="page">
+    <img class="top-banner" src="../images/cursor_techniques.png" alt="Cursor techniques banner" />
+
+    <div class="controls">
+      <label for="techniqueSelect">Technique</label>
+      <select id="techniqueSelect">
+        <option value="" disabled selected>Please select...</option>
+        <option value="center">(1) Center</option>
+        <option value="gaze-fixation">(2) Gaze-Fixation</option>
+        <option value="frame-memory">(3) Frame-Memory</option>
+        <option value="frame-relative">(4) Frame-Relative</option>
+        <option value="world-space">(5) World-Space</option>
+      </select>
+    </div>
+
+    <div class="sketch-container">
+      <div id="display-sketch"></div>
+      <div id="user-sketch"></div>
+    </div>
+  </main>
+
+  <script src="controller.js"></script>
+  <script src="displays.js"></script>
+  <script src="user.js"></script>
+</body>
+</html>

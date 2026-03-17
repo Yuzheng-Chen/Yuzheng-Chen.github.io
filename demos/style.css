@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 24px;
+  gap: 10px;
+}
+
+.top-banner {
+  display: block;
+  width:  100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.sketch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#display-sketch,
+#user-sketch {
+  display: block;
+}
+
+label {
+  color: #3c3b3b;
+  display: block;
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: 0 0 0 0;
+}
+
+#techniqueSelect {
+  width: 440px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 24px;
+  gap: 10px;
+}
+
+.top-banner {
+  display: block;
+  width: min(1100px, 100%);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+#techniqueSelect {
+  width: 240px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.demo-stage {
+  position: relative;
+  display: inline-block;
+}
+
+.sketch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.demo-disabled-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(1px);
+  z-index: 20;
+  border-radius: 10px;
+}
+
+.demo-disabled-overlay.is-visible {
+  display: flex;
+}
+
+.demo-disabled-overlay.is-visible + .sketch-container {
+  filter: grayscale(0.45) opacity(0.5);
+}
+
+.demo-disabled-overlay__card {
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  color: #222;
+  text-align: center;
+}
