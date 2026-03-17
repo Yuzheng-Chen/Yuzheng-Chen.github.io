@@ -130,14 +130,3 @@ body {
   color: #222;
   text-align: center;
 }
-
-.sketch-outer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.sketch-scale {
-  transform-origin: top center;
-}
