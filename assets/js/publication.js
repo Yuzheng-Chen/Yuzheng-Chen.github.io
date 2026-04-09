@@ -1,151 +1,304 @@
-function escapeHTML(str) {
-  const div = document.createElement('div');
-  div.textContent = str || '';
-  return div.innerHTML;
-}
+(function () {
+  const PUBLICATIONS_URL = 'publications.json';
+  const WRAPPER_SELECTOR = '.publication-wrapper';
 
-// Function to generate publication HTML
-function generatePublicationHTML(publication) {
-  const remarkHTML = publication.remark
-    ? `<div class="meta"><span class="remark">${publication.remark}</span></div>`
-    : '';
+  let modalElements = null;
+  let interactionsInitialized = false;
 
-  const pdfLinkHTML =
-    publication.pdfLink && publication.pdfLink !== '#'
-      ? `<a href="${publication.pdfLink}" target="_blank" class="fa-regular fa-file-pdf publication-links"></a>`
-      : '';
+  function createElement(tagName, className, text) {
+    const element = document.createElement(tagName);
 
-  const videoLinkHTML =
-    publication.videoLink && publication.videoLink !== '#'
-      ? `<a href="${publication.videoLink}" target="_blank" class="fa-regular fa-circle-play publication-links"></a>`
-      : '';
+    if (className) {
+      element.className = className;
+    }
 
-  // If this publication has an interactive demo, make the teaser clickable
-const teaserHTML =
-  publication.interactiveDemo
-    ? `
-      <div class="publication-teaser-wrap image left teaser">
-        <a
-          class="publication-teaser js-demo-trigger"
-          href="#"
-          data-demo-src="${publication.interactiveDemo}"
-          data-demo-title="${escapeHTML(publication.title)}"
-        >
-          <img src="${publication.imageSrc}" alt="Article Image" />
-          <span class="publication-teaser__overlay">
-            <span class="publication-teaser__play">
-              <i class="fa-solid fa-play"></i>
-            </span>
-          </span>
-        </a>
-      </div>
-    `
-    : `
-      <div class="publication-teaser-wrap image left teaser">
-        <a class="publication-teaser">
-          <img src="${publication.imageSrc}" alt="Article Image" />
-        </a>
-      </div>
-    `;
+    if (typeof text === 'string') {
+      element.textContent = text;
+    }
 
-  return `
-      <div class="content-container">
-        ${teaserHTML}
-        <div class="content-right">
-          <header>
-            <div class="title">
-              <h2><a href="${publication.doiLink}" target="_blank">${publication.title}</a></h2>
-              ${remarkHTML}
-              <p>${publication.authors}&nbsp
-                ${pdfLinkHTML}
-                ${videoLinkHTML}
-              </p>
-            </div>
-          </header>
-          <div class="abstract">
-            <p class="abstract-text">${publication.abstract}</p>
-            <button class="expand-btn">Read More ⋁</button>
-          </div>
-        </div>
-      </div>`;
-}
+    return element;
+  }
 
-// Function to initialize the expand button functionality
-function initializeExpandButtons() {
-  document.querySelectorAll('.expand-btn').forEach(button => {
-    button.addEventListener('click', function () {
-      const abstractText = this.previousElementSibling;
+  function createExternalLink(href, className, label) {
+    const link = createElement('a', className);
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', label);
+    return link;
+  }
 
-      if (abstractText.classList.contains('expanded')) {
-        abstractText.classList.remove('expanded');
-        this.textContent = 'Read More ⋁';
-      } else {
-        abstractText.classList.add('expanded');
-        this.textContent = 'Read Less ⋀';
-      }
-    });
-  });
-}
+  function createTeaser(publication) {
+    const wrapper = createElement('div', 'publication-teaser-wrap image left teaser');
 
-// Modal logic
-function initializeDemoModal() {
-  const modal = document.getElementById('demo-modal');
-  if (!modal) return;
+    if (publication.interactiveDemo) {
+      const trigger = createElement('a', 'publication-teaser js-demo-trigger');
+      const image = createElement('img');
+      const overlay = createElement('span', 'publication-teaser__overlay');
+      const playButton = createElement('span', 'publication-teaser__play');
+      const icon = createElement('i', 'fa-solid fa-play');
 
-  const backdrop = modal.querySelector('.demo-modal__backdrop');
-  const closeBtn = document.getElementById('demo-modal-close');
-  const frame = document.getElementById('demo-modal-frame');
-  const title = document.getElementById('demo-modal-title');
+      trigger.href = '#';
+      trigger.dataset.demoSrc = publication.interactiveDemo;
+      trigger.dataset.demoTitle = publication.title || 'Interactive Demo';
+
+      image.src = publication.imageSrc;
+      image.alt = publication.title || 'Publication teaser';
+
+      playButton.appendChild(icon);
+      overlay.appendChild(playButton);
+      trigger.append(image, overlay);
+      wrapper.appendChild(trigger);
+
+      return wrapper;
+    }
+
+    const figure = createElement('div', 'publication-teaser');
+    const image = createElement('img');
+
+    image.src = publication.imageSrc;
+    image.alt = publication.title || 'Publication teaser';
+
+    figure.appendChild(image);
+    wrapper.appendChild(figure);
+
+    return wrapper;
+  }
+
+  function createAuthorsLine(publication) {
+    const paragraph = createElement('p');
+    const authors = createElement('span');
+
+    authors.innerHTML = publication.authors || '';
+    paragraph.appendChild(authors);
+
+    if (publication.pdfLink && publication.pdfLink !== '#') {
+      paragraph.appendChild(document.createTextNode(' '));
+      paragraph.appendChild(
+        createExternalLink(
+          publication.pdfLink,
+          'fa-regular fa-file-pdf publication-links',
+          `Open PDF for ${publication.title}`
+        )
+      );
+    }
+
+    if (publication.videoLink && publication.videoLink !== '#') {
+      paragraph.appendChild(document.createTextNode(' '));
+      paragraph.appendChild(
+        createExternalLink(
+          publication.videoLink,
+          'fa-regular fa-circle-play publication-links',
+          `Watch video for ${publication.title}`
+        )
+      );
+    }
+
+    return paragraph;
+  }
+
+  function createPublicationCard(publication) {
+    const container = createElement('section', 'content-container');
+    const contentRight = createElement('div', 'content-right');
+    const header = createElement('header');
+    const title = createElement('div', 'title');
+    const heading = createElement('h2');
+    const titleLink = createExternalLink(
+      publication.doiLink,
+      null,
+      `Open publication page for ${publication.title}`
+    );
+    const abstract = createElement('div', 'abstract');
+    const abstractText = createElement('p', 'abstract-text', publication.abstract || '');
+    const expandButton = createElement('button', 'expand-btn', 'Read more');
+
+    titleLink.textContent = publication.title || 'Untitled publication';
+    heading.appendChild(titleLink);
+    title.appendChild(heading);
+
+    if (publication.remark) {
+      const meta = createElement('div', 'meta');
+      const remark = createElement('span', 'remark', publication.remark);
+      meta.appendChild(remark);
+      title.appendChild(meta);
+    }
+
+    title.appendChild(createAuthorsLine(publication));
+    header.appendChild(title);
+
+    expandButton.type = 'button';
+    expandButton.setAttribute('aria-expanded', 'false');
+
+    abstract.append(abstractText, expandButton);
+    contentRight.append(header, abstract);
+    container.append(createTeaser(publication), contentRight);
+
+    return container;
+  }
+
+  function ensureDemoModal() {
+    if (modalElements) {
+      return modalElements;
+    }
+
+    const existingModal = document.getElementById('demo-modal');
+
+    if (existingModal) {
+      modalElements = {
+        modal: existingModal,
+        backdrop: existingModal.querySelector('.demo-modal__backdrop'),
+        closeButton: existingModal.querySelector('.demo-modal__close'),
+        frame: existingModal.querySelector('#demo-modal-frame'),
+        title: existingModal.querySelector('#demo-modal-title')
+      };
+
+      return modalElements;
+    }
+
+    const modal = createElement('div', 'demo-modal');
+    const backdrop = createElement('div', 'demo-modal__backdrop');
+    const dialog = createElement('div', 'demo-modal__dialog');
+    const header = createElement('div', 'demo-modal__header');
+    const title = createElement('h3', null, 'Interactive Demo');
+    const closeButton = createElement('button', 'demo-modal__close', 'Close');
+    const body = createElement('div', 'demo-modal__body');
+    const frame = createElement('iframe');
+
+    modal.id = 'demo-modal';
+    modal.setAttribute('aria-hidden', 'true');
+
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-labelledby', 'demo-modal-title');
+
+    title.id = 'demo-modal-title';
+
+    closeButton.type = 'button';
+    closeButton.id = 'demo-modal-close';
+    closeButton.setAttribute('aria-label', 'Close interactive demo');
+
+    frame.id = 'demo-modal-frame';
+    frame.src = '';
+    frame.loading = 'lazy';
+    frame.allowFullscreen = true;
+
+    header.append(title, closeButton);
+    body.appendChild(frame);
+    dialog.append(header, body);
+    modal.append(backdrop, dialog);
+    document.body.appendChild(modal);
+
+    modalElements = {
+      modal,
+      backdrop,
+      closeButton,
+      frame,
+      title
+    };
+
+    return modalElements;
+  }
 
   function openDemo(src, demoTitle) {
-    if (frame) frame.src = src;
-    if (title) title.textContent = demoTitle || 'Interactive Demo';
+    const { modal, frame, title } = ensureDemoModal();
+
+    frame.src = src;
+    title.textContent = demoTitle || 'Interactive Demo';
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
   function closeDemo() {
+    const { modal, frame } = ensureDemoModal();
+
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
-    if (frame) frame.src = '';
+    frame.src = '';
     document.body.style.overflow = '';
   }
 
-  document.addEventListener('click', function (e) {
-    const trigger = e.target.closest('.js-demo-trigger');
+  function toggleAbstract(button) {
+    const abstractText = button.previousElementSibling;
+    const isExpanded = abstractText.classList.toggle('expanded');
 
-    if (trigger) {
-      e.preventDefault();
-      openDemo(trigger.dataset.demoSrc, trigger.dataset.demoTitle);
+    button.textContent = isExpanded ? 'Read less' : 'Read more';
+    button.setAttribute('aria-expanded', String(isExpanded));
+  }
+
+  function initializeInteractions() {
+    if (interactionsInitialized) {
       return;
     }
 
-    if (e.target === backdrop || e.target === closeBtn) {
-      closeDemo();
-    }
-  });
+    interactionsInitialized = true;
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-      closeDemo();
-    }
-  });
-}
+    document.addEventListener('click', function (event) {
+      const expandButton = event.target.closest('.expand-btn');
+      if (expandButton) {
+        toggleAbstract(expandButton);
+        return;
+      }
 
-// Fetch publications data from the JSON file
-fetch('publications.json')
-  .then(response => response.json())
-  .then(data => {
-    const publicationWrapper = document.querySelector('.publication-wrapper');
+      const demoTrigger = event.target.closest('.js-demo-trigger');
+      if (demoTrigger) {
+        event.preventDefault();
+        openDemo(demoTrigger.dataset.demoSrc, demoTrigger.dataset.demoTitle);
+        return;
+      }
 
-    data.forEach(publication => {
-      publicationWrapper.innerHTML += generatePublicationHTML(publication);
+      if (
+        modalElements &&
+        (event.target === modalElements.backdrop || event.target === modalElements.closeButton)
+      ) {
+        closeDemo();
+      }
     });
 
-    initializeExpandButtons();
-    initializeDemoModal();
-  })
-  .catch(error => {
-    console.error('Error fetching the publications:', error);
-  });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && modalElements && modalElements.modal.classList.contains('is-open')) {
+        closeDemo();
+      }
+    });
+  }
+
+  function renderPublications(publications) {
+    const wrapper = document.querySelector(WRAPPER_SELECTOR);
+    if (!wrapper) {
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    publications.forEach(function (publication) {
+      fragment.appendChild(createPublicationCard(publication));
+    });
+
+    wrapper.appendChild(fragment);
+  }
+
+  function initializePublications() {
+    if (!document.querySelector(WRAPPER_SELECTOR)) {
+      return;
+    }
+
+    initializeInteractions();
+
+    fetch(PUBLICATIONS_URL)
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error(`Failed to load publications: ${response.status}`);
+        }
+
+        return response.json();
+      })
+      .then(function (publications) {
+        renderPublications(publications);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+  initializePublications();
+})();

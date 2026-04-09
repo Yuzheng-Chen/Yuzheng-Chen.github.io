@@ -29,56 +29,60 @@
 		});
 
 	// Menu.
-		$menu
-			.appendTo($body)
-			.panel({
-				delay: 500,
-				hideOnClick: true,
-				hideOnSwipe: true,
-				resetScroll: true,
-				resetForms: true,
-				side: 'right',
-				target: $body,
-				visibleClass: 'is-menu-visible'
-			});
+		if ($menu.length > 0)
+			$menu
+				.appendTo($body)
+				.panel({
+					delay: 500,
+					hideOnClick: true,
+					hideOnSwipe: true,
+					resetScroll: true,
+					resetForms: true,
+					side: 'right',
+					target: $body,
+					visibleClass: 'is-menu-visible'
+				});
 
 	// Search (header).
 		var $search = $('#search'),
 			$search_input = $search.find('input');
 
-		$body
-			.on('click', '[href="#search"]', function(event) {
+		if ($search.length > 0) {
 
-				event.preventDefault();
+			$body
+				.on('click', '[href="#search"]', function(event) {
 
-				// Not visible?
-					if (!$search.hasClass('visible')) {
+					event.preventDefault();
 
-						// Reset form.
-							$search[0].reset();
+					// Not visible?
+						if (!$search.hasClass('visible')) {
 
-						// Show.
-							$search.addClass('visible');
+							// Reset form.
+								$search[0].reset();
 
-						// Focus input.
-							$search_input.focus();
+							// Show.
+								$search.addClass('visible');
 
-					}
+							// Focus input.
+								$search_input.focus();
 
-			});
+						}
 
-		$search_input
-			.on('keydown', function(event) {
+				});
 
-				if (event.keyCode == 27)
-					$search_input.blur();
+			$search_input
+				.on('keydown', function(event) {
 
-			})
-			.on('blur', function() {
-				window.setTimeout(function() {
-					$search.removeClass('visible');
-				}, 100);
-			});
+					if (event.keyCode == 27)
+						$search_input.blur();
+
+				})
+				.on('blur', function() {
+					window.setTimeout(function() {
+						$search.removeClass('visible');
+					}, 100);
+				});
+		}
 
 	// Intro.
 		var $intro = $('#intro');
