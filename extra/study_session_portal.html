@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Session Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --brand-red: #B5121B;
+            --text-dark: #1A1A1A;
+            --bg-white: #FFFFFF;
+            --accent-gray: #F8F9FA;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn-brand {
+            background-color: var(--bg-white);
+            border: 2px solid var(--brand-red);
+            color: var(--brand-red);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-brand:hover {
+            background-color: var(--brand-red);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(181, 18, 27, 0.2);
+        }
+
+        .section-divider {
+            height: 4px;
+            width: 60px;
+            background-color: var(--brand-red);
+            margin: 1.5rem 0;
+        }
+
+        .embed-container {
+            background: var(--accent-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+
+        /* Responsive iframe wrappers */
+        .iframe-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .demo-wrapper {
+            height: 800px; /* Specific height for the demo tool */
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .demo-wrapper {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 lg:p-12">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">Study Session Resources</h1>
+            <div class="section-divider"></div>
+            <p class="text-gray-600 max-w-2xl">Welcome. Please complete the questionnaires in order as instructed during the session.</p>
+        </header>
+
+        <!-- Navigation Buttons -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            <a href="https://lancasteruni.eu.qualtrics.com/jfe/form/SV_4GiD1KipMmqCyN0" target="_blank" class="btn-brand p-4 text-center rounded-lg shadow-sm">
+                Q1. Demographic
+            </a>
+            <a href="https://lancasteruni.eu.qualtrics.com/jfe/form/SV_ab2hAmbPY3pQ3Hg" target="_blank" class="btn-brand p-4 text-center rounded-lg shadow-sm">
+                Q2. After Technique
+            </a>
+            <a href="https://lancasteruni.eu.qualtrics.com/jfe/form/SV_3k0S1XVaQ1AOo6O" target="_blank" class="btn-brand p-4 text-center rounded-lg shadow-sm">
+                Q3. After Study
+            </a>
+            <a href="https://lancasteruni.eu.qualtrics.com/jfe/form/SV_2lcoPkMhj5yPdWK" target="_blank" class="btn-brand p-4 text-center rounded-lg shadow-sm">
+                Q4. After All
+            </a>
+        </section>
+
+        <!-- Presentation Section -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-6">
+                <h2 class="text-xl font-bold">Presentation Slides</h2>
+                <div class="flex-grow h-px bg-gray-200"></div>
+            </div>
+            <div class="embed-container">
+                <div class="iframe-wrapper">
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSzjySsr42wPIjeVgWQMoxbmW7hbtdOKyJ5Kp6teVSTmnFv62d6AujJcG7P5jNacayQvHL_iUTj7TlV/pubembed?start=false&loop=false&delayms=3000" 
+                            allowfullscreen="true"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Techniques Demo Section -->
+        <section class="mb-12">
+            <div class="flex items-center gap-4 mb-6">
+                <h2 class="text-xl font-bold">Cursor Techniques Demo</h2>
+                <div class="flex-grow h-px bg-gray-200"></div>
+            </div>
+            <div class="embed-container">
+                <div class="demo-wrapper">
+                    <iframe src="https://yuzheng-chen.github.io/demos/cursor_techniques.html" 
+                            class="w-full h-full border-0"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Decoration -->
+        <footer class="mt-20 border-t border-gray-100 pt-8 pb-4 text-center text-gray-400 text-sm">
+            <div class="flex justify-center gap-2 mb-4">
+                <div class="w-2 h-2 rounded-full" style="background-color: var(--brand-red)"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-200"></div>
+                <div class="w-2 h-2 rounded-full bg-gray-100"></div>
+            </div>
+            &copy; 2024 Study Session Portal. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
